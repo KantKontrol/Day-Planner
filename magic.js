@@ -34,11 +34,9 @@ function createTimeBox(rowId, time){
     let newTimeBox = $("<div>"); //add time box
 
     newTimeBox.attr("time", time);
-    newTimeBox.attr("class", "hour");
+    newTimeBox.attr("class", "hour left");
 
     newTimeBox.text(time);
-
-    console.log($("#"+rowId).first());
 
     $("#"+rowId).children(0).append(newTimeBox);
 }
@@ -46,7 +44,7 @@ function createTimeBox(rowId, time){
 function createTimeBlock(rowId){
 
     let newTimeBlock = $("<div>");
-    newTimeBlock.attr("class", "time-block present");
+    newTimeBlock.attr("class", "time-block present left");
 
     let newTextArea = $("<textarea>");
     newTextArea.attr("class", "textarea");
@@ -59,7 +57,7 @@ function createTimeBlock(rowId){
 function createSaveButton(rowId){
 
     let newSaveButton = $("<div>");
-    newSaveButton.attr("class", "saveBtn");
+    newSaveButton.attr("class", "saveBtn left");
 
     $("#"+rowId).children(0).append(newSaveButton);
 }
