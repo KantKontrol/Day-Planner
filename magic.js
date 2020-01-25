@@ -17,15 +17,11 @@ function loadTimeBlocks(){
         newRow.attr("id", i);
         newRow.attr("class", "row");
 
-        let newCol = $("<div>").attr("class", "col-sm-12");
-
-        newRow.append(newCol);
-
         $("#timeblocks").append(newRow);
 
-        createTimeBox(i, times[i]);
-        createTimeBlock(i);
-        createSaveButton(i);
+        newRow.append($("<div>").attr("class", "col-sm-1").append(createTimeBox(i, times[i])));
+        newRow.append($("<div>").attr("class", "col-sm-10").append(createTimeBlock(i)));
+        newRow.append($("<div>").attr("class", "col-sm-1").append(createSaveButton(i)));
 
     }
 }
@@ -34,30 +30,30 @@ function createTimeBox(rowId, time){
     let newTimeBox = $("<div>"); //add time box
 
     newTimeBox.attr("time", time);
-    newTimeBox.attr("class", "hour left");
+    newTimeBox.attr("class", "row hour");
 
     newTimeBox.text(time);
 
-    $("#"+rowId).children(0).append(newTimeBox);
+   return newTimeBox;
 }
 
 function createTimeBlock(rowId){
 
     let newTimeBlock = $("<div>");
-    newTimeBlock.attr("class", "time-block present left");
+    newTimeBlock.attr("class", "time-block row past");
 
     let newTextArea = $("<textarea>");
     newTextArea.attr("class", "textarea");
 
     newTimeBlock.append(newTextArea);
 
-    $("#"+rowId).children(0).append(newTimeBlock);
+   return newTimeBlock;
 }
 
 function createSaveButton(rowId){
 
     let newSaveButton = $("<div>");
-    newSaveButton.attr("class", "saveBtn left");
+    newSaveButton.attr("class", "saveBtn row");
 
-    $("#"+rowId).children(0).append(newSaveButton);
+    return newSaveButton;
 }
