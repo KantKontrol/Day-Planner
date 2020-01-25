@@ -3,8 +3,6 @@
 //sets current day to html page
 $("#currentDay").html(moment().format("MMM Do YYYY"));
 
-
-
 loadTimeBlocks();
 
 function loadTimeBlocks(){
@@ -22,7 +20,6 @@ function loadTimeBlocks(){
         newRow.append($("<div>").attr("class", "col-sm-1").append(createTimeBox(i, times[i])));
         newRow.append($("<div>").attr("class", "col-sm-10").append(createTimeBlock(i)));
         newRow.append($("<div>").attr("class", "col-sm-1").append(createSaveButton(i)));
-
     }
 }
 
