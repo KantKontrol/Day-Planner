@@ -27,55 +27,36 @@ function loadTimeBlocks(){
 
         $("#timeblocks").append(newRow);
 
-        newRow.append($("<div>").attr("class", "col-sm-1").append(createTimeBox(i, times[i])));
-        newRow.append($("<div>").attr("class", "col-sm-10").append(createTimeBlock(i, times[i])));
-        newRow.append($("<div>").attr("class", "col-sm-1").append(createSaveButton(i)));
+        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("time-box", times[i], "row hour")));
+        newRow.append($("<div>").attr("class", "col-sm-10").append(makeDiv("time-block", times[i], "row time-block")));
+        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("save-btn", times[i], "saveBtn row")));
     }
     
 }
 
-function makeObject(){ //make a functon to make all the elements interchanably with input, elimnating 2 methods 
+function makeDiv(type, time, classes){ //make a functon to make all the elements interchanably with input, elimnating 2 methods 
 
+    let newDiv = $("<div>");
 
+    newDiv.attr("class", classes); //sets classes passed in to class attribute
+
+    if(type == "time-box"){
+        newDiv.text(time.d);
+    }
+
+    if(type == "time-block"){//sets time attribute and gives time-block text area, also sets past,present, or future
+        newDiv.attr("time", time.t);
+        
+        let newTextArea = $("<textarea>");
+        newTextArea.attr("class", "textarea");
+        newDiv.append(newTextArea);
+
+        setTimeBlockState(newDiv);
+    }
+    return newDiv;
 }
 
-function createTimeBox(rowId, time){
-    let newTimeBox = $("<div>"); //add time box
-
-    newTimeBox.attr("class", "row hour");
-
-    newTimeBox.text(time.d);
-
-   return newTimeBox;
-}
-
-function createTimeBlock(rowId, time){
-
-    let newTimeBlock = $("<div>");
-    newTimeBlock.attr("time", time.t); //stores hour in attribute
-    newTimeBlock.attr("class", "time-block row");
-
-    setTimeBlockState(newTimeBlock);
-
-    let newTextArea = $("<textarea>");
-    newTextArea.attr("class", "textarea");
-
-    
-
-    newTimeBlock.append(newTextArea);
-
-   return newTimeBlock;
-}
-
-function createSaveButton(rowId){
-
-    let newSaveButton = $("<div>");
-    newSaveButton.attr("class", "saveBtn row");
-
-    return newSaveButton;
-}
-
-function setTimeBlockState(tBlock){}
+function setTimeBlockState(tBlock){
 
         let t = $(tBlock).attr("time");
 
