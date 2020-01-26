@@ -3,28 +3,31 @@
 //sets current day to html page
 $("#currentDay").html(moment().format("MMM Do YYYY"));
 
+var currentToDo = [];
+
+
 loadTimeBlocks();
+loadSavedData();
 
 $(document).on("click", ".lock", function(){
     
     let timeBlocks = $(".time-block").toArray();
-
-    let saveBlock;
+    let saveArea;
 
     for(let i = 0;i < timeBlocks.length;i++){
 
         let testTime = $(timeBlocks[i]).attr("time");
         let saveBtnTime = $(this).parent().attr("time");
 
-        console.log({testTime, saveBtnTime});
-
         if(testTime == saveBtnTime){ //finds corresponding time block and exits loop
-            saveBlock = timeBlocks[i]
+            saveArea = $(timeBlocks[i]).children(); //stores textarea of corresponding time-block
             break;
         }
     }
 
-    
+    let userData = $(saveArea).val();
+    currentToDo.push(userData);
+    window.localStorage.setItem('ToDo', JSON.stringify(currentToDo));
 });
 
 function loadTimeBlocks(){
@@ -105,4 +108,8 @@ function setTimeBlockState(tBlock){
             $(tBlock).attr("class", "time-block row future");
         
         }
+}
+
+function loadSavedData(){
+    
 }
