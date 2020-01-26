@@ -4,6 +4,7 @@
 $("#currentDay").html(moment().format("MMM Do YYYY"));
 
 loadTimeBlocks();
+setTimeBlockState();
 
 function loadTimeBlocks(){
 
@@ -13,7 +14,7 @@ function loadTimeBlocks(){
 
         let newRow = $("<div>");
         newRow.attr("id", i);
-        newRow.attr("class", "row");
+        newRow.attr("class", "row timeRow");
 
         $("#timeblocks").append(newRow);
 
@@ -21,12 +22,14 @@ function loadTimeBlocks(){
         newRow.append($("<div>").attr("class", "col-sm-10").append(createTimeBlock(i)));
         newRow.append($("<div>").attr("class", "col-sm-1").append(createSaveButton(i)));
     }
+    
 }
 
 function createTimeBox(rowId, time){
     let newTimeBox = $("<div>"); //add time box
 
-    newTimeBox.attr("time", time);
+    newTimeBox.attr("time", time.substring(0,1)); //stores hour in attribute
+    newTimeBox.attr("id", "tb"+ time.substring(0,1)); //creates an idea with the specific time
     newTimeBox.attr("class", "row hour");
 
     newTimeBox.text(time);
@@ -53,4 +56,27 @@ function createSaveButton(rowId){
     newSaveButton.attr("class", "saveBtn row");
 
     return newSaveButton;
+}
+
+function setTimeBlockState(){
+    console.log(moment().format("h"));
+
+    let timeBoxes = $(".hour");
+    console.log(timeBoxes);
+
+    for(var i = 9;i < 8;i++){
+
+        let t = $("#tb"+i).attr("time");
+        
+        console.log(t);
+
+    }
+    
+
+    
+
+    //for(var i = 0; window["question" + i] !== undefined;i++){
+   //     qArray.push(window["question" + i]);
+   // }
+    
 }
