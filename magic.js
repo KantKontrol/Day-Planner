@@ -53,6 +53,12 @@ function makeDiv(type, time, classes){ //make a functon to make all the elements
 
         setTimeBlockState(newDiv);
     }
+
+    if(type == "save-btn"){
+        let newLockImg = $("<a>").attr("class", "lock");
+        console.log(newLockImg);
+        newDiv.append(newLockImg);
+    }
     return newDiv;
 }
 

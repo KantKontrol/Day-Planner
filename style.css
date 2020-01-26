@@ -58,6 +58,18 @@ textarea{
   color: white;
 }
 
+.lock{
+  width: 32px;
+  height: 32px;
+  margin: auto;
+  background-image: url(./assets/img/lock.png);
+  opacity: .5;
+}
+
+.lock:hover{
+  opacity: 1;
+}
+
 .saveBtn {
   border-left: 1px solid green;
   border-top-right-radius: 15px;
