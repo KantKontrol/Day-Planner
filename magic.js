@@ -28,8 +28,6 @@ function loadTimeBlocks(){
 function createTimeBox(rowId, time){
     let newTimeBox = $("<div>"); //add time box
 
-    newTimeBox.attr("time", time.substring(0,1)); //stores hour in attribute
-    newTimeBox.attr("id", "tb"+ time.substring(0,1)); //creates an idea with the specific time
     newTimeBox.attr("class", "row hour");
 
     newTimeBox.text(time);
@@ -40,6 +38,7 @@ function createTimeBox(rowId, time){
 function createTimeBlock(rowId){
 
     let newTimeBlock = $("<div>");
+    newTimeBlock.attr("time", time.substring(0,1)); //stores hour in attribute
     newTimeBlock.attr("class", "time-block row past");
 
     let newTextArea = $("<textarea>");
@@ -61,22 +60,17 @@ function createSaveButton(rowId){
 function setTimeBlockState(){
     console.log(moment().format("h"));
 
-    let timeBoxes = $(".hour");
-    console.log(timeBoxes);
+    let tBlock = $(".time-block");
+    console.log(tBlock);
 
     for(var i = 9;i < 8;i++){
 
-        let t = $("#tb"+i).attr("time");
+        //let t = $("#tb"+i).attr("time");
         
-        console.log(t);
+      // console.log(t);
 
     }
     
 
-    
-
-    //for(var i = 0; window["question" + i] !== undefined;i++){
-   //     qArray.push(window["question" + i]);
-   // }
     
 }
