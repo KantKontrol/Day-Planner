@@ -5,6 +5,28 @@ $("#currentDay").html(moment().format("MMM Do YYYY"));
 
 loadTimeBlocks();
 
+$(document).on("click", ".lock", function(){
+    
+    let timeBlocks = $(".time-block").toArray();
+
+    let saveBlock;
+
+    for(let i = 0;i < timeBlocks.length;i++){
+
+        let testTime = $(timeBlocks[i]).attr("time");
+        let saveBtnTime = $(this).parent().attr("time");
+
+        console.log({testTime, saveBtnTime});
+
+        if(testTime == saveBtnTime){ //finds corresponding time block and exits loop
+            saveBlock = timeBlocks[i]
+            break;
+        }
+    }
+
+    
+});
+
 function loadTimeBlocks(){
 
     let times = [
@@ -27,9 +49,11 @@ function loadTimeBlocks(){
 
         $("#timeblocks").append(newRow);
 
-        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("time-box", times[i], "row hour")));
-        newRow.append($("<div>").attr("class", "col-sm-10").append(makeDiv("time-block", times[i], "row time-block")));
-        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("save-btn", times[i], "saveBtn row")));
+        let timePassingIn = times[i];
+
+        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("time-box", timePassingIn, "row hour")));
+        newRow.append($("<div>").attr("class", "col-sm-10").append(makeDiv("time-block", timePassingIn, "row time-block")));
+        newRow.append($("<div>").attr("class", "col-sm-1").append(makeDiv("save-btn", timePassingIn, "saveBtn row")));
     }
     
 }
@@ -39,13 +63,13 @@ function makeDiv(type, time, classes){ //make a functon to make all the elements
     let newDiv = $("<div>");
 
     newDiv.attr("class", classes); //sets classes passed in to class attribute
+    newDiv.attr("time", time.t); //sets time attribute to elements 24h time repersentation
 
     if(type == "time-box"){
         newDiv.text(time.d);
     }
 
     if(type == "time-block"){//sets time attribute and gives time-block text area, also sets past,present, or future
-        newDiv.attr("time", time.t);
         
         let newTextArea = $("<textarea>");
         newTextArea.attr("class", "textarea");
@@ -55,8 +79,8 @@ function makeDiv(type, time, classes){ //make a functon to make all the elements
     }
 
     if(type == "save-btn"){
+    
         let newLockImg = $("<a>").attr("class", "lock");
-        console.log(newLockImg);
         newDiv.append(newLockImg);
     }
     return newDiv;
