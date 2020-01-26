@@ -34,6 +34,11 @@ function loadTimeBlocks(){
     
 }
 
+function makeObject(){ //make a functon to make all the elements interchanably with input, elimnating 2 methods 
+
+
+}
+
 function createTimeBox(rowId, time){
     let newTimeBox = $("<div>"); //add time box
 
@@ -70,25 +75,23 @@ function createSaveButton(rowId){
     return newSaveButton;
 }
 
-function setTimeBlockState(tBlock){
-    console.log(tBlock);
+function setTimeBlockState(tBlock){}
 
         let t = $(tBlock).attr("time");
 
-        let currentTime = moment().format("HH");
+        let currentTime24 = moment().format("HH");
 
-        if(t == currentTime){//present
+        if(t == currentTime24){//present
 
             $(tBlock).attr("class", "time-block row present");
 
-        }else if(t < currentTime){ //past
+        }else if(t < currentTime24){ //past
 
             $(tBlock).attr("class", "time-block row past");
 
-        }else if(t > currentTime){ //future
+        }else if(t > currentTime24){ //future
 
             $(tBlock).attr("class", "time-block row future");
         
         }
-       console.log(t);
 }
